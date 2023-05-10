@@ -5,6 +5,7 @@ import { getAllPosts, getAllTags, getNumberOfPages, getNumberOfPagesByTag, getPo
 import { SinglePost } from "../../../../../components/Post/SinglePost";
 import Link from 'next/link';
 import Pagination from '@/components/Pagination/Pagination';
+import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -45,17 +46,20 @@ export const getStaticProps = async (context) => {
 
   const numberOfPagesByTag = await getNumberOfPagesByTag(upperCaseCurrentTag);
 
+  const allTags = await getAllTags();
+
   return {
     props: {
       posts,
       numberOfPagesByTag,
       currentTag,
+      allTags,
     },
     revalidate: 60, // ISR (Incremental Static Regeneration)
   };
 };
 
-const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTag }) => { // Propsから分割代入
+const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTag, allTags, }) => { // Propsから分割代入
   return (
     <div className="container w-full h-full mx-auto">
       <Head>
@@ -80,6 +84,7 @@ const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTag }) => { // Prop
             ))}
           </section>
           <Pagination numberOfPage={numberOfPagesByTag} tag={currentTag}/>
+          <Tag tags={allTags} />
         </div>
       </main>
     </div>

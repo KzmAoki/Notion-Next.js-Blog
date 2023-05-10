@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <nav className="container mx-auto lg:px-2 px-5 lg:w-2/5">
+    <nav className="container mx-auto lg:px-2 px-5 lg:w-1/2">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="text-2xl font-medium">
           Notion-Blog

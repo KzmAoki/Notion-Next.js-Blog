@@ -11,7 +11,19 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 export const getAllPosts = async () => {
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "", // undefined対策でデフォルト設定
-    page_size: 20,
+    page_size: 100,
+    filter: {
+      property: "Published",
+      checkbox: {
+        equals: true,
+      },
+    },
+    sorts: [
+      {
+        property: "Date",
+        direction: "descending",
+      }
+    ],
   });
 
   const allPosts = posts.results;

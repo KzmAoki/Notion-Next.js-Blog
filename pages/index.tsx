@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Head from 'next/head';
-import { getAllPosts, getPostsForTopPage } from "../lib/notionAPI";
+import { getAllPosts, getAllTags, getPostsForTopPage } from "../lib/notionAPI";
 import { SinglePost } from "../components/Post/SinglePost";
 import Link from 'next/link';
+import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,16 +13,19 @@ export const getStaticProps = async () => {
   // const allPosts = await getAllPosts();
   const fourPosts = await getPostsForTopPage(4);
 
+  const allTags = await getAllTags();
+
   return {
     props: {
       fourPosts,
+      allTags,
       // allPosts,
     },
     revalidate: 60, // ISR (Incremental Static Regeneration)
   };
 };
 
-export default function Home({/* allPosts */ fourPosts, }) {
+export default function Home({/* allPosts */ fourPosts, allTags,}) {
   // console.log(allPosts);
   return (
     <div className="container w-full h-full mx-auto">
@@ -33,7 +37,7 @@ export default function Home({/* allPosts */ fourPosts, }) {
         <h1 className="text-5xl font-medium text-center mb-16">Notion Blog</h1>
         <div>
         {fourPosts.map((post) => (
-          <div key={post.id} className="mx-4">
+          <div key={post.id}>
             <SinglePost
               title={post.title}
               description={post.description}
@@ -46,6 +50,7 @@ export default function Home({/* allPosts */ fourPosts, }) {
         ))}
         </div>
         <Link href="/posts/page/1" className='mb-6 lg:w-1/2 mx-auto px-5 block'>...もっと見る</Link>
+        <Tag tags={allTags}/>
       </main>
     </div>
   );

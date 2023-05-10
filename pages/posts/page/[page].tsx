@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Head from 'next/head';
-import { getAllPosts, getNumberOfPages, getPostsByPage, getPostsForTopPage } from "../../../lib/notionAPI";
+import { getAllPosts, getAllTags, getNumberOfPages, getPostsByPage, getPostsForTopPage } from "../../../lib/notionAPI";
 import { SinglePost } from "../../../components/Post/SinglePost";
 import Link from 'next/link';
 import Pagination from '@/components/Pagination/Pagination';
+import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,18 +34,19 @@ export const getStaticProps = async (context) => {
     parseInt(currentPage.toString(), 10) // Intに変換
   );
 
+  const allTags = await getAllTags();
+
   return {
     props: {
       numberOfPage,
       postsByPage,
-      // fourPosts,
-      // allPosts,
+      allTags,
     },
     revalidate: 60, // ISR (Incremental Static Regeneration)
   };
 };
 
-const BlogPageList = ({ numberOfPage, postsByPage, }) => { // Propsから分割代入
+const BlogPageList = ({ numberOfPage, postsByPage, allTags, }) => { // Propsから分割代入
   return (
     <div className="container w-full h-full mx-auto">
       <Head>
@@ -69,6 +71,7 @@ const BlogPageList = ({ numberOfPage, postsByPage, }) => { // Propsから分割�
             ))}
           </section>
           <Pagination numberOfPage={numberOfPage} />
+          <Tag tags={allTags}/>
         </div>
       </main>
     </div>
