@@ -5,7 +5,7 @@ type Props = {
   title: string;
   description: string;
   date: string;
-  tags: string;
+  tags: string[];
   slug: string;
   isPaginationPage: boolean;
 }
