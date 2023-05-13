@@ -8,6 +8,22 @@ import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
+type Post = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags: string[];
+}
+
+type Tags = string[];
+
+type HomeProps = {
+  fourPosts: Post[];
+  allTags: Tags;
+}
+
 // SSG (Static Site Generation)
 export const getStaticProps = async () => {
   // const allPosts = await getAllPosts();
@@ -25,8 +41,9 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({/* allPosts */ fourPosts, allTags,}) {
-  // console.log(allPosts);
+export default function Home({/* allPosts */ fourPosts, allTags,}: HomeProps) {
+  console.log(fourPosts);
+  console.log(allTags);
   return (
     <div className="container w-full h-full mx-auto">
       <Head>
