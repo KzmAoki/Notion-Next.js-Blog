@@ -9,9 +9,25 @@ import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
+type Post = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags: string[];
+}
+
+type BlogTagPageListProps = {
+  posts: Post[];
+  numberOfPagesByTag: number;
+  currentTag: string;
+  allTags: string[];
+}
+
 export const getStaticPaths = async () => {
   const allTags = await getAllTags();
-  let params = [];
+  let params: { params: { tag: string; page: string; }; }[] = [];
 
   await Promise.all(
     allTags.map((tag: string) => {
@@ -32,7 +48,7 @@ export const getStaticPaths = async () => {
 };
 
 // SSG (Static Site Generation)
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context: { params: { page: string; tag: string; }; }) => {
 
   const currentPage = context.params?.page; // オプショナルチェイン
   const currentTag: string = context.params?.tag.toString();
@@ -59,7 +75,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTag, allTags, }) => { // Propsから分割代入
+const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTag, allTags, }: BlogTagPageListProps) => { // Propsから分割代入
   return (
     <div className="container w-full h-full mx-auto">
       <Head>
