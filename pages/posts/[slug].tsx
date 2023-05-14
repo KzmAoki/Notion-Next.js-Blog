@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import { getAllPosts, getSinglePost } from "@/lib/notionAPI";
 import Link from "next/link";
 import React from "react";
@@ -5,9 +6,36 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
+type Post = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags: string[];
+}
+
+type SinglePost = {
+  metadata: {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+    slug: string;
+    tags: string[];
+  },
+  markdown: string;
+}
+
+type SinglePostProps = { // 分割代入したPropsに対してはPropsのプロパティに対して型定義を行う
+  post: SinglePost;
+}
+
 export async function getStaticPaths() {
   const allPosts = await getAllPosts();
-  const paths = allPosts.map(({ slug }) => ({ params: { slug } })); // ()で囲まれた式が戻る
+  const paths = allPosts
+  .filter((post): post is Post => post !== undefined) // undefinedの排除
+  .map(({ slug }) => ({ params: { slug } })); // ()で囲まれた式が戻る
   
   return {
     paths,
@@ -15,8 +43,9 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps = async ({ params }) => {
-  const post = await getSinglePost(params.slug);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const slug = params?.slug ?? '';  // nullableな値にするため?を付加
+  const post = await getSinglePost(Array.isArray(slug) ? slug[0] : slug); // 文字配列かどうかで分岐
 
   return {
     props: {
@@ -26,7 +55,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-const Post = ({post}) => {
+const Post = ({post}: SinglePostProps) => {
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
       <h2 className="w-full text-2xl font-medium">{post.metadata.title}</h2>
@@ -41,7 +70,7 @@ const Post = ({post}) => {
       <div className="mt-10 font-medium">
         <ReactMarkdown
           components={{
-            code({node, inline, className, children, ...props}) {
+            code({node, inline, className, children, style, ...props}) {
               const match = /language-(\w+)/.exec(className || '')
               return !inline && match ? (
                 <SyntaxHighlighter
