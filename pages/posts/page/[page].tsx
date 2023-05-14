@@ -9,6 +9,21 @@ import Tag from '@/components/Tag/Tag';
 
 const inter = Inter({ subsets: ['latin'] })
 
+type Post = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags: string[];
+}
+
+type BlogPageListProps = {
+  numberOfPage: number;
+  postsByPage: Post[];
+  allTags: string[];
+}
+
 export const getStaticPaths = async () => {  
   const numberOfPage = await getNumberOfPages();
 
@@ -25,10 +40,8 @@ export const getStaticPaths = async () => {
 };
 
 // SSG (Static Site Generation)
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context: { params: { page: string; }; }) => {
   const numberOfPage = await getNumberOfPages();
-  // const allPosts = await getAllPosts();
-  // const fourPosts = await getPostsForTopPage(4);
   const currentPage = context.params?.page; // オプショナルチェイン
   const postsByPage = await getPostsByPage(
     parseInt(currentPage.toString(), 10) // Intに変換
@@ -46,7 +59,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-const BlogPageList = ({ numberOfPage, postsByPage, allTags, }) => { // Propsから分割代入
+const BlogPageList = ({ numberOfPage, postsByPage, allTags, }: BlogPageListProps) => { // Propsから分割代入
   return (
     <div className="container w-full h-full mx-auto">
       <Head>
@@ -70,7 +83,7 @@ const BlogPageList = ({ numberOfPage, postsByPage, allTags, }) => { // Propsか�
               </div>
             ))}
           </section>
-          <Pagination numberOfPage={numberOfPage} />
+          <Pagination numberOfPage={numberOfPage} tag=''/>
           <Tag tags={allTags}/>
         </div>
       </main>
