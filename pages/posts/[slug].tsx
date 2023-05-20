@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Post = ({post}: SinglePostProps) => {
   return (
-    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
+    <section className="container lg:px-2 px-5 lg:w-2/5 mx-auto mt-20">
       <h2 className="w-full text-2xl font-medium">{post.metadata.title}</h2>
       <div className="border-b-2 w-1/3 mt-1"></div>
       <span className="text-gray-400">{post.metadata.date}</span>

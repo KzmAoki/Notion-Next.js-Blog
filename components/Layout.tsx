@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar } from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 
 interface MyComponentProps {
   children: React.ReactNode;
@@ -8,9 +9,10 @@ interface MyComponentProps {
 
 export const Layout = ({ children }: MyComponentProps) => {
   return (
-    <div>
+    <div className="dark:bg-black dark:text-white transition-colors duration-500">
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }
