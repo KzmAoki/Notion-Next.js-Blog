@@ -53,7 +53,7 @@ const CustomMobileLink = ({ href, title, className = "", toggle }: CustomMobileL
 
   return (
     <button
-      className={`${className} relative group my-2`}
+      className={`${className} relative group my-2 text-white dark:text-black`}
       onClick={handleClick}
     >
       {title}
@@ -62,7 +62,7 @@ const CustomMobileLink = ({ href, title, className = "", toggle }: CustomMobileL
         absolute left-0 -bottom-0.5
         group-hover:w-full transition-[width] ease duration-300
         ${router.asPath === href ? "w-full" : "w-0"}
-        dark:bg-gray-400
+        dark:bg-black
       `}>
         &nbsp;
       </span>
@@ -79,8 +79,8 @@ export const Navbar = () => {
   }
 
   return (
-    <header className="w-full px-32 py-8 font-medium flex items-center justify-between
-    relative z-10 lg:px-16 md:px-12 sm:px-8
+    <header className="w-full px-8 py-8 font-medium flex items-center justify-between
+    relative z-10 md:px-12
     ">
 
       <button className="flex-col justify-center items-center lg:hidden" onClick={handleClick}>
@@ -106,7 +106,7 @@ export const Navbar = () => {
         <nav className="flex items-cneter justify-center">
 
           <motion.a
-            href="/"
+            href="https://twitter.com/KzmAoki"
             target={"_blank"}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -116,7 +116,7 @@ export const Navbar = () => {
           </motion.a>
 
           <motion.a
-            href="/"
+            href="https://github.com/KzmAoki"
             target={"_blank"}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -156,7 +156,7 @@ export const Navbar = () => {
           <nav className="flex items-cneter justify-center flex-wrap mt-2">
 
             <motion.a
-              href="/"
+              href="https://twitter.com/KzmAoki"
               target={"_blank"}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -166,11 +166,11 @@ export const Navbar = () => {
             </motion.a>
 
             <motion.a
-              href="/"
+              href="https://github.com/KzmAoki"
               target={"_blank"}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className="w-8 mx-3"
+              className="w-8 mx-3 bg-black rounded-full"
             >
               <GithubIcon />
             </motion.a>
