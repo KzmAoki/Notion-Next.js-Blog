@@ -79,7 +79,7 @@ export const Navbar = () => {
   }
 
   return (
-    <header className="w-full px-8 py-8 font-medium flex items-center justify-between
+    <header id="header" className="w-full px-8 py-8 font-medium flex items-center justify-between
     relative z-10 md:px-12
     ">
 

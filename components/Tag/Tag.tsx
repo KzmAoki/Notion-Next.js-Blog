@@ -10,7 +10,7 @@ const Tag = (props: Props) => {
 
   return (
     <div>
-      <section className="lg:w-1/2 mb-8 mx-auto p-5 hover:translate-y-1 duration-300 transition-all">
+      <section className="lg:w-1/2 mb-16 mx-auto p-5 hover:translate-y-1 duration-300 transition-all">
         <div className="font-medium mb-4">タグ一覧</div>
         <div className="flex flex-wrap gap-5">
           {tags.map((tag: string, index: number) => (
