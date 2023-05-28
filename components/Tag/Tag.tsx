@@ -15,7 +15,7 @@ const Tag = (props: Props) => {
         <div className="flex flex-wrap gap-5">
           {tags.map((tag: string, index: number) => (
             <Link href={`/posts/tag/${tag}/page/1`} key={index}>
-              <span className="cursor-pointer px-2 font-medium rounded-xl bg-gray-300 inline-block">
+              <span className="cursor-pointer px-2 font-medium rounded-xl bg-gray-300 dark:bg-gray-500 inline-block">
                 {tag}
               </span>
             </Link>

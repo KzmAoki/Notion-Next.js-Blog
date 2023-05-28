@@ -63,7 +63,7 @@ const Post = ({post}: SinglePostProps) => {
       <span className="text-gray-400">{post.metadata.date}</span>
       <br/>
       {post.metadata.tags.map((tag: string, index: number) => (
-        <p className="bg-gray-300 rounded-xl font-medium mt-2 px-2 inline-block mr-2" key={index}>
+        <p className="bg-gray-300 dark:bg-gray-500 rounded-xl font-medium mt-2 px-2 inline-block mr-2" key={index}>
           <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
         </p>
       ))}
@@ -91,8 +91,16 @@ const Post = ({post}: SinglePostProps) => {
         >
           {post.markdown}
         </ReactMarkdown>
-        <Link href="/">
-          <span className="pb-20 block mt-3">{"<"}--HOME</span>
+        <Link href="/" className="relative inline-block px-4 py-2 my-8 font-medium group">
+            <span
+              className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black dark:bg-white group-hover:-translate-x-0 group-hover:-translate-y-0"
+            ></span>
+            <span
+              className="absolute inset-0 w-full h-full bg-white dark:bg-black border-2 border-black dark:border-white group-hover:bg-black"
+            ></span>
+            <span 
+              className="relative text-black dark:text-white group-hover:text-white"
+            >TOP PAGE</span>
         </Link>
       </div>
     </section>

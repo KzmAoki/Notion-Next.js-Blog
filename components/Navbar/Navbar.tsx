@@ -98,9 +98,9 @@ export const Navbar = () => {
       <div className="w-full justify-between items-center lg:flex hidden">
         <nav className="flex items-cneter justify-center">
           <CustomLink href="/" title="Home" className="mr-4"></CustomLink>
-          <CustomLink href="/About" title="About" className="mx-4"></CustomLink>
-          <CustomLink href="/Projects" title="Projects" className="mx-4"></CustomLink>
-          <CustomLink href="/Blog" title="Blog" className="ml-4"></CustomLink>
+          <CustomLink href="/about" title="About" className="mx-4"></CustomLink>
+          <CustomLink href="/projects" title="Projects" className="mx-4"></CustomLink>
+          <CustomLink href="/posts/page/1" title="Articles" className="ml-4"></CustomLink>
         </nav>
 
         <nav className="flex items-cneter justify-center">
@@ -148,9 +148,9 @@ export const Navbar = () => {
         >
           <nav className="flex items-cneter flex-col justify-center mb-3">
             <CustomMobileLink href="/" title="Home" className="" toggle={handleClick} />
-            <CustomMobileLink href="/About" title="About" className="" toggle={handleClick} />
-            <CustomMobileLink href="/Projects" title="Projects" className="" toggle={handleClick} />
-            <CustomMobileLink href="/Blog" title="Blog" className="" toggle={handleClick} />
+            <CustomMobileLink href="/about" title="About" className="" toggle={handleClick} />
+            <CustomMobileLink href="/projects" title="Projects" className="" toggle={handleClick} />
+            <CustomMobileLink href="/posts/page/1" title="Articles" className="" toggle={handleClick} />
           </nav>
 
           <nav className="flex items-cneter justify-center flex-wrap mt-2">

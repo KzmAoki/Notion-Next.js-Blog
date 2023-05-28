@@ -22,7 +22,7 @@ export const SinglePost = (props: Props) => {
             <div className="text-base">{date}</div>
             <div className="flex flex-row gap-3">
               {tags.map((tag: string, index: number) => (
-                <span key={index} className="inline-block bg-gray-300 dark:bg-gray-500 rounded-xl px-2 pb-0125 font-medium text-base">{tag}</span>
+                <span key={index} className="inline-block bg-gray-300 dark:bg-gray-500 dark:bg-gray-500 rounded-xl px-2 pb-0125 font-medium text-base">{tag}</span>
               ))}
             </div>
           </div>
