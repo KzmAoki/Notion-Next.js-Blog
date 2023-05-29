@@ -18,11 +18,9 @@ export default function About() {
                 <div className="col-span-8 md:col-span-4 order-2 md:order-none flex flex-col items-start justify-start">
                     <h2 className="mb-4 text-xl font-bold uppercase">Biography</h2>
                     <p className="font-medium">
-                        Hi, I&apos;m KzmAoki, a web developer with a
-                        passion for creating beautiful, functional, and user-centered
-                        digital experiences.
-                        I am always looking for new and innovative ways to bring my
-                        clients&apos; visions to life.
+                    こんにちは、KzmAokiです。<br/>
+                    私はウェブデベロッパーとして、美しく、機能的で、ユーザー中心のデジタル体験を創造すること目指しています。<br/>
+                    クライアントのビジョンを実現するための新しく革新的な方法を探し、挑戦していきます。
                     </p>
                 </div>
 
@@ -38,7 +36,7 @@ export default function About() {
                 </div>
             </div>
             <h2 className="text-5xl text-center font-medium my-32">Skills</h2>
-            <p className="text-center text-3xl">I&apos;ll add skills soon !!</p>
+            <p className="text-center text-3xl mb-32">I&apos;ll add skills soon !!</p>
         </main>
         </div>
     );

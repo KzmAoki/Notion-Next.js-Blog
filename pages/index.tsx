@@ -66,17 +66,19 @@ export default function Home({/* allPosts */ fourPosts, allTags,}: HomeProps) {
           </div>
         ))}
         </div>
-        <Link href="/posts/page/1" className="relative inline-block px-4 py-2 ml-5 mb-16 font-medium group">
-            <span
-              className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black dark:bg-white group-hover:-translate-x-0 group-hover:-translate-y-0"
-            ></span>
-            <span
-              className="absolute inset-0 w-full h-full bg-white dark:bg-black border-2 border-black dark:border-white group-hover:bg-black"
-            ></span>
-            <span 
-              className="relative text-black dark:text-white group-hover:text-white"
-            >MORE ARTICLES ...</span>
-        </Link>
+        <div className='lg:w-1/2 mx-auto'>
+          <Link href="/posts/page/1" className="relative inline-block px-4 py-2 ml-5 mb-16 font-medium group">
+              <span
+                className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black dark:bg-white group-hover:-translate-x-0 group-hover:-translate-y-0"
+              ></span>
+              <span
+                className="absolute inset-0 w-full h-full bg-white dark:bg-black border-2 border-black dark:border-white group-hover:bg-black"
+              ></span>
+              <span 
+                className="relative text-black dark:text-white group-hover:text-white"
+              >MORE ARTICLES ...</span>
+          </Link>
+        </div>
         <Tag tags={allTags}/>
       </main>
     </div>

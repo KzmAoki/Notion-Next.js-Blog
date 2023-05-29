@@ -30,7 +30,7 @@ export const SinglePost = (props: Props) => {
         </section>
       ) : (
         <section className="lg:w-1/2 mb-8 mx-auto p-5 shadow-2x1 hover:shadow-none hover:translate-y-1 transition-all duration-300">
-          <div className="flex lg:flex-row flex-col lg:items-center gap-3">
+          <div className="flex flex-col gap-3">
             <h2 className="text-2x1 font-medium">{title}</h2>
             <div className="text-base">{date}</div>
             <div className="flex flex-row gap-3">
